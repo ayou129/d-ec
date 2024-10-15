@@ -1,3 +1,7 @@
+git submodule init
+git submodule update
+
+
 # EC
 open-source EC
 
