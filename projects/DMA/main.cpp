@@ -1,7 +1,6 @@
 #include <Winsock2.h>
-#include "../../cs2/shared/cs2game.h"
-#include "../../csgo/shared/csgogame.h"
-#include "../../apex/shared/apexgame.h"
+
+#include "../../delta/shared/deltagame.h"
 
 #include <SDL3/SDL.h>
 #include <devguid.h>
@@ -80,12 +79,8 @@ namespace client
 			kmbox::mouse_move(x, y);
 		else
 		{
-			if (cs2::game_handle)
-				cs2::input::move(x, y);
-			else if (csgo::game_handle)
-				csgo::input::mouse_move(x, y);
-			else
-				apex::input::mouse_move(x, y);
+			if (delta::game_handle)
+				delta::input::move(x, y);
 		}
 	}
 
@@ -183,46 +178,22 @@ int main(void)
 		}
 
 		SDL_RenderClear(sdl_renderer);
-
-		if (cs2::game_handle)
+		delta::running();
+		if (delta::game_handle)
 		{
-			if (cs2::running())
+			if (delta::running())
 			{
-				cs2::features::run();
+				delta::features::run();
 			}
 			else
 			{
-				cs2::features::reset();
-			}
-		}
-		else if (csgo::game_handle)
-		{
-			if (csgo::running())
-			{
-				csgo::features::run();
-			}
-			else
-			{
-				csgo::features::reset();
-			}
-		}
-		else if (apex::game_handle)
-		{
-			if (apex::running())
-			{
-				apex::features::run();
-			}
-			else
-			{
-				apex::features::reset();
+				delta::features::reset();
 			}
 		}
 		else
 		{
 			BOOL is_running = 0;
-			if (!is_running) is_running = cs2::running();
-			if (!is_running) is_running = csgo::running();
-			if (!is_running) is_running = apex::running();
+			if (!is_running) is_running = delta::running();
 		}
 
 		SDL_SetRenderDrawColor(sdl_renderer, 0, 0, 0, 255);
@@ -279,6 +250,7 @@ void kmbox::net::send(unsigned int cmd)
 
 BOOL kmbox::net::open()
 {
+	return 0;
 	if (kmbox_handle) { return FALSE; }
 
 	WSADATA wsa_data;
@@ -345,6 +317,7 @@ BOOL kmbox::net::open()
 
 BOOL kmbox::open()
 {
+	return 0;
 	if (kmbox_handle) { return TRUE; }
 
 	LPCSTR deviceName = "USB-SERIAL CH340";
