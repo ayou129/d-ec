@@ -76,7 +76,7 @@ interfaces::player = vm::read_i64(game_handle, interfaces::player);
 */
 
 
-inline const char *get_process_name() { return vm::get_target_os() == VmOs::Windows ? "UnrealCEFSubProcess.exe" : "delta"; }
+inline const char *get_process_name() { return vm::get_target_os() == VmOs::Windows ? "DeltaForceClient-Win64-Shipping.exe" : "delta"; }
 inline const char *get_client_name() { return vm::get_target_os() == VmOs::Windows ? "client.dll" : "libclient.so"; }
 inline const char *get_engine_name() { return vm::get_target_os() == VmOs::Windows ? "engine2.dll" : "libengine2.so"; }
 inline const char *get_sdl3_name() { return vm::get_target_os() == VmOs::Windows ? "SDL3.dll" : "libSDL3.so.0"; }
